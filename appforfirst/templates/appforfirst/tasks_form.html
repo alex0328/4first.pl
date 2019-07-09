@@ -1,0 +1,10 @@
+{% extends 'appforfirst/min_base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'appforfirst/szablon/css/welcome.css' %}">
+<form action="" method="post" class="mx-auto add_project_form">
+{% csrf_token %}
+{{ form.as_p }}
+<input class="btn btn-primary hov d-flex mx-auto" type="submit" value="Save">
+</form>
+{% endblock %}

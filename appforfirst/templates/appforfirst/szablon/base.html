@@ -1,0 +1,235 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE HTML>
+<html>
+	<head><link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>4first - dla najlepszych</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
+	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FreeHTML5.co" />
+
+
+  <!--
+	//////////////////////////////////////////////////////
+
+	FREE HTML5 TEMPLATE
+	DESIGNED & DEVELOPED by FREEHTML5.CO
+
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 		https://www.facebook.com/fh5co
+
+	//////////////////////////////////////////////////////
+	 -->
+
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'appforfirst/szablon/css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'appforfirst/szablon/css/icomoon.css' %}">
+	<!-- Themify Icons-->
+	<link rel="stylesheet" href="{% static 'appforfirst/szablon/css/themify-icons.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'appforfirst/szablon/css/bootstrap.css' %}">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{% static 'appforfirst/szablon/css/magnific-popup.css' %}">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="{% static 'appforfirst/szablon/css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'appforfirst/szablon/css/owl.theme.default.min.css' %}">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{% static 'appforfirst/szablon/css/style.css' %}">
+
+	<!-- Modernizr JS -->
+	<script src="{% static 'appforfirst/szablon/js/modernizr-2.6.2.min.js' %}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="{% static 'appforfirst/szablon/js/respond.min.js' %}"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+
+    	<div class="gtco-loader"></div>
+
+	<div id="page">
+
+
+	<div class="page-inner">
+	<nav class="gtco-nav" role="navigation">
+		<div class="gtco-container">
+
+			<div class="row">
+				<div class="col-sm-4 col-xs-12">
+					<div id="gtco-logo"><a href="index.html"><img class="logos" src="{% static 'appforfirst/images/logo.png' %}"></a></div>
+				</div>
+				<div class="col-xs-8 text-right menu-1">
+					<ul>
+						<li><a href="features.html">Features</a></li>
+						<li><a href="tour.html">Tour</a></li>
+						<li class="has-dropdown">
+							<a href="#">Dropdown</a>
+							<ul class="dropdown">
+								<li><a href="#">Web Design</a></li>
+								<li><a href="#">eCommerce</a></li>
+								<li><a href="#">Branding</a></li>
+								<li><a href="#">API</a></li>
+							</ul>
+						</li>
+						<li><a href="pricing.html">Pricing</a></li>
+						<li><a href="contact.html">Contact</a></li>
+                        {% if user.is_authenticated %}
+						<li class="btn-cta"><a href="#">
+
+                            <a href="{% url 'logout' %}"><span>Wyloguj {{ request.user}}</span></a></li>
+                            {% else %}
+                                <span>Zacznij działać</span></a></li>
+                            {% endif %}
+
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+
+        {% if user.is_authenticated %}
+
+        <header id="gtco-header" class="gtco-cover gtco-cover_auth " role="banner">
+		<div class="overlay"></div>
+
+	</header>
+
+
+
+        {% else %}
+        <header id="gtco-header" class="gtco-cover" role="banner" style="background-image: url(images/img_4.jpg)">
+		<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-left">
+
+
+					<div class="row row-mt-15em">
+						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+							<span class="intro-text-small">Jasna strona internetu</span>
+							<h1>Nie ma przyszłości bez kreatywności!</h1>
+						</div>
+						<div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
+							<div class="form-wrap">
+								<div class="tab">
+									<ul class="tab-menu">
+										<li class="active gtco-first"><a href="#" data-tab="signup">Napisz do nas</a></li>
+										<li class="gtco-second"><a href="#" data-tab="login">Zaloguj</a></li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-content-inner active" data-content="signup">
+											<form action="#">
+												<div class="row form-group">
+													<div class="col-md-12">
+														<label for="username">Imię</label>
+														<input type="text" class="form-control" id="username">
+													</div>
+												</div>
+												<div class="row form-group">
+													<div class="col-md-12">
+														<label for="password">Email</label>
+														<input type="email" class="form-control" id="password">
+													</div>
+												</div>
+												<div class="row form-group">
+													<div class="col-md-12">
+														<label for="password2">Wiadomość</label>
+														<textarea type="password" class="form-control" id="password2"></textarea>
+													</div>
+												</div>
+
+												<div class="row form-group">
+													<div class="col-md-12">
+														<input type="submit" class="btn btn-primary" value="Wyślij">
+													</div>
+												</div>
+											</form>
+										</div>
+
+										<div class="tab-content-inner" data-content="login">
+											<form action="#">
+												<div class="row form-group">
+													<div class="col-md-12">
+														<label for="username">Login</label>
+														<input type="text" class="form-control" id="username">
+													</div>
+												</div>
+												<div class="row form-group">
+													<div class="col-md-12">
+														<label for="password">Hasło</label>
+														<input type="password" class="form-control" id="password">
+													</div>
+												</div>
+
+												<div class="row form-group">
+													<div class="col-md-12">
+														<input type="submit" class="btn btn-primary" value="Login">
+													</div>
+												</div>
+											</form>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</header>
+        {% endif %}
+
+<div class="base_wrapper">
+                {% block content %}
+            {% endblock %}
+</div>
+
+
+    	<!-- jQuery -->
+	<script src="{% static 'appforfirst/szablon/js/jquery.min.js' %}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'appforfirst/szablon/js/jquery.easing.1.3.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'appforfirst/szablon/js/bootstrap.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'appforfirst/szablon/js/jquery.waypoints.min.js' %}"></script>
+	<!-- Carousel -->
+	<script src="{% static 'appforfirst/szablon/js/owl.carousel.min.js' %}"></script>
+	<!-- countTo -->
+	<script src="{% static 'appforfirst/szablon/js/jquery.countTo.js' %}"></script>
+	<!-- Magnific Popup -->
+	<script src="{% static 'appforfirst/szablon/js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'appforfirst/szablon/js/magnific-popup-options.js' %}"></script>
+	<!-- Main -->
+	<script src="{% static 'appforfirst/szablon/js/main.js' %}"></script>
+
+    	</body>
+</html>

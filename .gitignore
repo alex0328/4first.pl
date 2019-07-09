@@ -89,6 +89,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+ve-4tirat
 
 # Spyder project settings
 .spyderproject

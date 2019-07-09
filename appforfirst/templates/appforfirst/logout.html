@@ -1,0 +1,11 @@
+
+{% extends 'appforfirst/min_base.html' %}
+{% block content %}
+    <h2>Wylogowałeś się prawidłowo</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log in Again</a>
+        </small>
+    </div>
+    <h2>Życzymy miłego dnia i do zobaczenia wkrótce.</h2>
+{% endblock content %}

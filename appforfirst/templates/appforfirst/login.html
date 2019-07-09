@@ -1,0 +1,13 @@
+
+{% extends 'appforfirst/min_base.html' %}
+{% block content %}
+    <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+        <p class="login_form">{{ form.as_p }}</p>
+        <input class="submit" type="submit" value="Zaloguj">
+    </form>
+    <div class="reg">
+    <h2>Nie masz konta?</h2>
+        <a href="{% url 'register' %}">Zarejestruj się</a>
+    </div>
+{% endblock content %}
