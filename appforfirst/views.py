@@ -108,7 +108,7 @@ class TasksCreate(CreateView):
     success_url = reverse_lazy("appforfirst:welcome")
 
     def form_valid(self, form):
-        form.instance.project_user = self.request.user
+        form.instance.task_user = self.request.user
         return super().form_valid(form)
 
 class Preview(View):
@@ -135,6 +135,6 @@ class ReminderCreate(CreateView):
     success_url = reverse_lazy("appforfirst:welcome")
 
     def form_valid(self, form):
-        form.instance.diary_user = self.request.user
+        form.instance.reminder_user = self.request.user
         return super().form_valid(form)
 
