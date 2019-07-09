@@ -94,9 +94,18 @@
 			<div class="container">
                 <div class="underheader">
                     {% if user.is_authenticated %}
+					<div class="for-flex">
+					<div>
 						<h2 class="btn-cta"><a href="#">
 
+                            <a href="{% url 'appforfirst:welcome' %}"><span>Welcome {{ request.user}}</span></a></h2>
+						</div>
+					<div>
+											<h2 class="btn-cta"><a href="#">
+
                             <a href="{% url 'logout' %}"><span>Wyloguj {{ request.user}}</span></a></h2>
+						</div>
+						</div>
                             {% else %}
                                 <span>Zacznij działać</span></a></li>
                             {% endif %}

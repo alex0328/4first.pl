@@ -8,7 +8,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 animate-box text-center">
-						<h2 class="intro-heading">Minimal leads you for a better site</h2>
+						<h2 class="intro-heading">Dzisiaj jest: {{weekday}}, {{date.day}}.{{date.month}}.{{date.year}}</h2>
 					</div>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 							<div class="icon">
 								<span><i class="icon-mobile"></i></span>
 							</div>
-							<h3>Przeypomnienia</h3>
+							<h3>Przypomnienia</h3>
 							<div class="mx-auto">
                                 <ul class="list-group mx-auto">
 									{% for todays_event in todays_events %}

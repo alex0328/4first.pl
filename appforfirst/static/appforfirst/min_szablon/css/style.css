@@ -1032,3 +1032,35 @@ input[type="text"] {
 }
 
 /*# sourceMappingURL=style.css.map */
+/* custom */
+/* mobile */
+
+@media screen and (max-width: 768px) {
+  .fh5co-logo {
+    display: none;
+  }
+  header {
+    padding: 0;
+  }
+  .intro-heading {
+    margin: 0;
+  }
+  #fh5co-hero {
+    margin: 0;
+  }
+  .icon {
+    display: none;
+  }
+  .services {
+    margin: 10px;
+  }
+  .intro-heading {
+    font-size: 20px;
+  }
+}
+
+.for-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
