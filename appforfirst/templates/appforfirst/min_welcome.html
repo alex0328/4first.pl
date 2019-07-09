@@ -44,9 +44,9 @@
                                 <ul class="list-group mx-auto">
 									{% for todays_event in todays_events %}
 									<a href="{% url 'appforfirst:event' todays.id %}">
-                                  		<li class="list-group-item hov">{{ todays_event.task_name}}
+                                  		<li class="list-group-item hov">{{ todays_event.reminder_name}}
 
-									  	<p>Start godzina: {{todays_event.task_data_wykonania|date:'H:i' }}</p>
+									  	<p>Start godzina: {{todays_event.reminder_data_wykonania|date:'H:i' }}</p>
 
 								  		</li>
 									</a>
@@ -68,9 +68,9 @@
                                 <ul class="list-group mx-auto">
 									{% for todays_task in todays_tasks %}
 									<a href="{% url 'appforfirst:task' todays_task.id %}">
-									  <li class="list-group-item hov">{{ todays_task.zadanie_name}}
-										  <p>Typ zadania: {{ todays_task.zadanie_type}}</p>
-										  <p>Godzina: {{todays_task.zadanie_start_time|date:'H:i'}}</p>
+									  <li class="list-group-item hov">{{ todays_task.task_name}}
+										  <p>Typ zadania: {{ todays_task.task_type}}</p>
+										  <p>Godzina: {{todays_task.task_start_time|date:'H:i'}}</p>
 									  </li>
 									</a>
 									{% endfor %}
@@ -91,8 +91,8 @@
                                 <ul class="list-group mx-auto">
 									{% for todays_task in todays_diary %}
 									<a href="{% url 'appforfirst:diary' todays_task.id %}">
-									  <li class="list-group-item hov">{{ todays_task.wydarzenie_name}}
-										  <p>Projekt: {{ todays_task.wydarzenie_project}}</p>
+									  <li class="list-group-item hov">{{ todays_task.diary_name}}
+										  <p>Projekt: {{ todays_task.diary_project}}</p>
 									  </li>
 									</a>
 									{% endfor %}

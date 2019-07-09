@@ -103,8 +103,7 @@ class ProjectCreate(CreateView):
 
 class TasksCreate(CreateView):
     model = models.Tasks
-    fields = ['task_type','task_name','task_description',
-              'task_start_time', 'task_end_time', 'task_is_done', 'task_project']
+    form_class = forms.TaskForm
     success_url = reverse_lazy("appforfirst:welcome")
 
     def form_valid(self, form):
