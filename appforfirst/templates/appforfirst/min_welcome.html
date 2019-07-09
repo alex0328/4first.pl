@@ -43,7 +43,7 @@
 							<div class="mx-auto">
                                 <ul class="list-group mx-auto">
 									{% for todays_event in todays_events %}
-									<a href="{% url 'appforfirst:event' todays.id %}">
+									<a href="{% url 'appforfirst:event' todays_event.id %}">
                                   		<li class="list-group-item hov">{{ todays_event.reminder_name}}
 
 									  	<p>Start godzina: {{todays_event.reminder_data_wykonania|date:'H:i' }}</p>
