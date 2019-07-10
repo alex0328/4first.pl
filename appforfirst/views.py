@@ -100,6 +100,9 @@ class ProjectCreate(CreateView):
         form.instance.project_user = self.request.user
         return super().form_valid(form)
 
+class ProjectDelete(View):
+    def get(self, request, project_id):
+        pass
 
 class TasksCreate(CreateView):
     model = models.Tasks
