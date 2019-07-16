@@ -36,6 +36,9 @@
                             <a class="btn btn-primary hov" href="#" role="button">Dodaj nowe przypomnienie</a>
                             <a class="btn btn-primary hov" href="{% url 'appforfirst:welcome' %}" role="button">Wróć do listy zadań</a>
                             <a class="btn btn-primary hov" href="{% url 'appforfirst:add_project' %}" role="button">Dodaj nowy projekt</a>
+                            {% for task in project %}
+                            <a class="btn btn-primary hov" href="{% url 'appforfirst:del_project' task.id %}" role="button">Usuń ten pojekt</a>
+                            {% endfor %}
                         </div>
 					</div>
 						</div>

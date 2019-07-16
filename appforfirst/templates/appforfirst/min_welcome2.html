@@ -1,0 +1,154 @@
+{% extends 'appforfirst/min_base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% for i in all_todays_events %}
+<div>Pierwsza pętla</div>
+{{ i.project_name }}
+<div>++++++++++</div>
+
+{% endfor %}
+
+{{all_todays_events}}
+
+<div id="fh5co-intro-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 animate-box text-center">
+						<h2 class="intro-heading">Dzisiaj jest: {{weekday}}, {{date.day}}.{{date.month}}.{{date.year}}</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<aside id="fh5co-hero" class="">
+			<div class="">
+				<ul class="slides">
+			   	<li style="background-color: #2b2b2b;">
+			   		<div class="overlay-gradient"></div>
+			   		<div class="container">
+			   			<div class="col-md-8 col-md-offset-2 col-md-push-4 slider-text">
+			   				<div class="slider-text-inner">
+			   					<h2 class="on_slider_color">Create A Motivational Template</h2>
+			   					<span class="on_slider_color">Branding</span>
+			   				</div>
+			   			</div>
+			   		</div>
+			   	</li>
+			  	</ul>
+		  	</div>
+		</aside>
+
+		<div id="fh5co-services-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 text-center animate-box">
+						<div class="services">
+							<div class="icon">
+								<span><i class="icon-mobile"></i></span>
+							</div>
+							<h3>Przypomnienia</h3>
+							<div class="mx-auto">
+                                <ul class="list-group mx-auto">
+									{% for todays_event in todays_events %}
+									<a href="{% url 'appforfirst:event' todays_event.id %}">
+                                  		<li class="list-group-item hov">{{ todays_event.reminder_name}}
+
+									  	<p>Start godzina: {{todays_event.reminder_data_wykonania|date:'H:i' }}</p>
+
+								  		</li>
+									</a>
+									{% endfor %}
+                                </ul>
+                            </div>
+							<div class="d-flex justify-content-center">
+                            <a class="btn btn-primary hov" href="{% url 'appforfirst:addreminder' %}" role="button">Dodaj nowe przypomnienie</a>
+                        </div>
+						</div>
+					</div>
+					<div class="col-md-4 text-center animate-box">
+						<div class="services">
+							<div class="icon">
+								<span><i class="icon-browser"></i></span>
+							</div>
+							<h3>ToDo</h3>
+							<div class="mx-auto">
+                                <ul class="list-group mx-auto">
+									{% for todays_task in todays_tasks %}
+									<a href="{% url 'appforfirst:task' todays_task.id %}">
+									  <li class="list-group-item hov">{{ todays_task.task_name}}
+										  <p>Typ zadania: {{ todays_task.task_type}}</p>
+										  <p>Godzina: {{todays_task.task_start_time|date:'H:i'}}</p>
+									  </li>
+									</a>
+									{% endfor %}
+                                </ul>
+                            </div>
+							<div class="d-flex justify-content-center">
+                            <a class="btn btn-primary hov" href="{% url 'appforfirst:addtask' %}" role="button">Dodaj nowy task</a>
+                        </div>
+						</div>
+					</div>
+					<div class="col-md-4 text-center animate-box">
+						<div class="services">
+							<div class="icon">
+								<span><i class="icon-toolbox"></i></span>
+							</div>
+							<h3>Dziennik</h3>
+							<div class="mx-auto">
+                                <ul class="list-group mx-auto">
+									{% for todays_task in todays_diary %}
+									<a href="{% url 'appforfirst:diary' todays_task.id %}">
+									  <li class="list-group-item hov">{{ todays_task.diary_name}}
+										  <p>Projekt: {{ todays_task.diary_project}}</p>
+									  </li>
+									</a>
+									{% endfor %}
+                                </ul>
+                            </div>
+							<div class="d-flex justify-content-center">
+                            <a class="btn btn-primary hov" href="{% url 'appforfirst:adddiary' %}" role="button">Dodaj nowe wydarzenie</a>
+                        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<div id="fh5co-services-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 text-center animate-box fadeInUp animated">
+						<div class="services">
+							<div class="icon">
+								<span><i class="icon-browser"></i></span>
+							</div>
+							<h3>Projekty</h3>
+							<div class="mx-auto">
+                                <ul class="list-group w-25 mx-auto">
+									{% for project in today %}
+									<a href="{% url 'appforfirst:project' project.id %}">
+                                  <li class="list-group-item hov">{{ project.project_name}} <p>Status: {{ project.project_status}}</p></li>
+									</a>
+										{% endfor %}
+                                </ul>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                            <a class="btn btn-primary hov" href="{% url 'appforfirst:add_project' %}" role="button">Dodaj nowy projekt</a>
+                        </div>
+						</div>
+					</div>
+					<div class="col-md-6 text-center animate-box fadeInUp animated">
+						<div class="services">
+							<div class="icon">
+								<span><i class="icon-toolbox"></i></span>
+							</div>
+							<h3>Web Design</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+        {% endblock %}

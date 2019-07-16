@@ -3,19 +3,6 @@
 
 {% block content %}
 
-{% for i in all_todays_events %}
-<div>+++++++++++++</div>
-{% for j in i.reminder_set.all %}
-<div>------------------------------</div>
-<div>{{j.reminder_name}}</div>
-<div>-----------------</div>
-{% endfor %}
-<div>++++++++++</div>
-
-{% endfor %}
-
-{{all_todays_events}}
-
 <div id="fh5co-intro-section">
 			<div class="container">
 				<div class="row">
@@ -63,21 +50,9 @@
 								  		</li>
 									</a>
 									{% endfor %}
-                                </ul>
-                            </div>
-							<div class="d-flex justify-content-center">
-                            <a class="btn btn-primary hov" href="{% url 'appforfirst:addreminder' %}" role="button">Dodaj nowe przypomnienie</a>
-                        </div>
-						</div>
-					</div>
-					<div class="col-md-4 text-center animate-box">
-						<div class="services">
-							<div class="icon">
-								<span><i class="icon-browser"></i></span>
-							</div>
+
 							<h3>ToDo</h3>
-							<div class="mx-auto">
-                                <ul class="list-group mx-auto">
+
 									{% for todays_task in todays_tasks %}
 									<a href="{% url 'appforfirst:task' todays_task.id %}">
 									  <li class="list-group-item hov">{{ todays_task.task_name}}
@@ -86,21 +61,8 @@
 									  </li>
 									</a>
 									{% endfor %}
-                                </ul>
-                            </div>
-							<div class="d-flex justify-content-center">
-                            <a class="btn btn-primary hov" href="{% url 'appforfirst:addtask' %}" role="button">Dodaj nowy task</a>
-                        </div>
-						</div>
-					</div>
-					<div class="col-md-4 text-center animate-box">
-						<div class="services">
-							<div class="icon">
-								<span><i class="icon-toolbox"></i></span>
-							</div>
+
 							<h3>Dziennik</h3>
-							<div class="mx-auto">
-                                <ul class="list-group mx-auto">
 									{% for todays_task in todays_diary %}
 									<a href="{% url 'appforfirst:diary' todays_task.id %}">
 									  <li class="list-group-item hov">{{ todays_task.diary_name}}

@@ -23,7 +23,7 @@ PROJECT_STATUS = [
 ]
 
 class Project(models.Model):
-    project_user = models.ForeignKey(User, on_delete=models.PROTECT)
+    project_user = models.ForeignKey(User, on_delete=models.CASCADE)
     project_name = models.CharField(max_length=50)
     project_description = models.TextField(blank=True)
     project_creation_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
@@ -36,7 +36,7 @@ class Project(models.Model):
 
 #Zadania
 class Tasks(models.Model):
-    task_user = models.ForeignKey(User, on_delete=models.PROTECT)
+    task_user = models.ForeignKey(User, on_delete=models.CASCADE)
     task_type = models.CharField(choices=TASK_TYPE, max_length=50)
     task_name = models.CharField(max_length=200)
     task_description = models.TextField(blank=True)
@@ -44,14 +44,14 @@ class Tasks(models.Model):
     task_start_time = models.DateTimeField(null=True, blank=True)
     task_end_time = models.DateTimeField(null=True, blank=True)
     task_is_done = models.BooleanField(default=False)
-    task_project = models.ForeignKey(Project, on_delete=models.PROTECT, blank=True)
+    task_project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
         return self.task_name
 
 #Dziennik
 class Diary(models.Model):
-    diary_user = models.ForeignKey(User, on_delete=models.PROTECT)
+    diary_user = models.ForeignKey(User, on_delete=models.CASCADE)
     diary_name = models.CharField(max_length=200)
     diary_description = models.TextField(blank=True)
     diary_data_utworzenia = models.DateTimeField(auto_now_add=True, null=True, blank=True)
@@ -59,7 +59,7 @@ class Diary(models.Model):
     diary_end_data = models.DateTimeField(default=datetime.now, null=True, blank=True)
     diary_wniosek = models.CharField(max_length=400)
     diary_data_powrotu = models.DateTimeField(null=True, blank=True)
-    diary_project = models.ForeignKey(Project, on_delete=models.PROTECT, blank=True, default=None)
+    diary_project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, default=None)
     diary_custom_field1 = models.CharField(max_length=400, blank=True)
     diary_custom_field2 = models.CharField(max_length=400, blank=True)
     diary_custom_field3 = models.CharField(max_length=400, blank=True)
@@ -76,13 +76,13 @@ class Diary(models.Model):
 
 #Przypominajka
 class Reminder(models.Model):
-    reminder_user = models.ForeignKey(User, on_delete=models.PROTECT)
+    reminder_user = models.ForeignKey(User, on_delete=models.CASCADE)
     reminder_name = models.CharField(max_length=200)
     reminder_description = models.TextField(blank=True)
     reminder_data_utworzenia = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     reminder_data_wykonania = models.DateTimeField(default=datetime.now, null=True, blank=True)
     reminder_is_done = models.BooleanField(default=False)
-    reminder_project = models.ForeignKey(Project, on_delete=models.PROTECT, blank=True, default=None)
+    reminder_project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, default=None)
 
     def __str__(self):
         return self.reminder_name
