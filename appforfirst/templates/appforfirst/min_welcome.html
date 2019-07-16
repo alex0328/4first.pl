@@ -3,6 +3,18 @@
 
 {% block content %}
 
+{% for i in all_todays_events %}
+<div>+++++++++++++</div>
+{% for j in i.reminder_set.all %}
+<div>------------------------------</div>
+<div>{{j.reminder_name}}</div>
+<div>-----------------</div>
+{% endfor %}
+<div>++++++++++</div>
+
+{% endfor %}
+
+{{all_todays_events}}
 
 <div id="fh5co-intro-section">
 			<div class="container">

@@ -8,6 +8,7 @@ from datetime import datetime
 from django.views.generic.edit \
 import CreateView
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 
 class MainPageView(View):
@@ -40,6 +41,12 @@ class WelcomeView(View):
         weekdayiso = datetime.now().isoweekday()
         weekdays = ["Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota","Niedziela"]
         weekday = weekdays[int(weekdayiso-1)]
+
+        all_todays_events = models.Project.objects.filter(Q(diary__diary_data_utworzenia__day=todays_date.day) |
+                                                          Q(reminder__reminder_data_wykonania__day=todays_date.day) |
+                                                          Q(tasks__task_start_time__day=todays_date.day))
+
+
         all_for_today_base = models.Project.objects.filter(project_user=request.user)
 
         todays_events = models.Reminder.objects.filter(reminder_data_wykonania__year=todays_date.year,
@@ -58,7 +65,8 @@ class WelcomeView(View):
                                                      diary_user=request.user)
 
 
-        ctx = {'date': date,
+        ctx = {'all_todays_events': all_todays_events,
+               'date': date,
                'weekday': weekday,
                'today': all_for_today_base,
                'todays_events': todays_events,
@@ -75,13 +83,13 @@ class Reminder_View(View):
 
 class Task_View(View):
     def get(self, request, id):
-        tasks = models.Zadania.objects.filter(id=id)
+        tasks = models.Tasks.objects.filter(id=id)
         ctx = {'tasks': tasks}
         return render(request, 'appforfirst/task.html', ctx)
 
 class Diary_View(View):
     def get(self, request, id):
-        diary = models.Dziennik.objects.filter(id=id)
+        diary = models.Diary.objects.filter(id=id)
         ctx = {'diary': diary}
         return render(request, 'appforfirst/diary.html', ctx)
 
