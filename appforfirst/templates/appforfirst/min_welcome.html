@@ -63,6 +63,7 @@
 									{% endfor %}
 
 							<h3>Dziennik</h3>
+
 									{% for todays_task in todays_diary %}
 									<a href="{% url 'appforfirst:diary' todays_task.id %}">
 									  <li class="list-group-item hov">{{ todays_task.diary_name}}
