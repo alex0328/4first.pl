@@ -25,10 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('appforfirst.urls', namespace='appforfirst')),
     path('login/',
-         auth_views.LoginView.as_view(template_name='appforfirst/login.html'),
+         auth_views.LoginView.as_view(template_name='appforfirst/newtemplates/login.html'),
          name='login'),
     path('logout/',
-         auth_views.LogoutView.as_view(template_name='appforfirst/logout.html'),
+         auth_views.LogoutView.as_view(template_name='appforfirst/newtemplates/logout.html'),
          name='logout'),
     path('register', views.RegisterView.as_view(),name='register'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

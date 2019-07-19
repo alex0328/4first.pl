@@ -1,0 +1,18 @@
+{% extends 'appforfirst/newtemplates/min_base.html' %}
+{% load static %}
+{% block content %}
+
+                            {% for task in project %}
+							<h2>{{ task.project_name}}</h2>
+                                  <li> <p>Opis: {{ task.project_description }}</p></li>
+                                  <li> <p>Data utworzenia: {{ task.project_creation_date|date:'Y-m-d H:i' }}</p></li>
+                                  <li> <p>Data startu: {{ task.project_start_date|date:'Y-m-d H:i' }}</p></li>
+                                  <li> <p>Data zakończenia: {{ task.project_end_date|date:'Y-m-d H:i' }}</p></li>
+                                  <li> <p>Status: {{ task.project_status }}</p></li>
+                           {% endfor %}
+	                            <a href="{% url 'appforfirst:welcome' %}" role="button">Wróć do listy zadań</a>
+                            <a href="{% url 'appforfirst:add_project' %}" role="button">Dodaj nowy projekt</a>
+                            {% for task in project %}
+                            <a href="{% url 'appforfirst:del_project' task.id %}" role="button">Usuń ten pojekt</a>
+                            {% endfor %}
+{% endblock %}

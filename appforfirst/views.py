@@ -14,14 +14,14 @@ from django.db.models import Q
 
 class MainPageView(View):
     def get(self, request):
-        return render(request, 'appforfirst/index.html')
+        return render(request, 'appforfirst/newtemplates/index.html')
 
 class RegisterView(View):
     form_class = forms.UserRegisterForm
-    template_name = 'appforfirst/register.html'
+    template_name = 'appforfirst/newtemplates/register.html'
 
     def get(self, request):
-        return render(request, 'appforfirst/register.html',
+        return render(request, 'appforfirst/newtemplates/register.html',
                       {'form': forms.UserRegisterForm()})
 
     def post(self, request):
@@ -74,7 +74,7 @@ class WelcomeView(LoginRequiredMixin, View):
                'todays_tasks': todays_tasks,
                'todays_diary': todays_diary,
                }
-        return render(request, 'appforfirst/min_welcome.html', ctx)
+        return render(request, 'appforfirst/newtemplates/min_welcome.html', ctx)
 
 
 class WelcomeView2(LoginRequiredMixin, View):
@@ -95,31 +95,31 @@ class WelcomeView2(LoginRequiredMixin, View):
         ctx = {'all_todays_events': all_todays_events,
                'date': date,
                }
-        return render(request, 'appforfirst/min_welcome2.html', ctx)
+        return render(request, 'appforfirst/newtemplates/min_welcome2.html', ctx)
 
 class Reminder_View(LoginRequiredMixin, View):
     def get(self, request, id):
         events = models.Reminder.objects.filter(id=id)
         ctx = {'events': events}
-        return render(request, 'appforfirst/event.html', ctx)
+        return render(request, 'appforfirst/newtemplates/event.html', ctx)
 
 class Task_View(LoginRequiredMixin, View):
     def get(self, request, id):
         tasks = models.Tasks.objects.filter(id=id)
         ctx = {'tasks': tasks}
-        return render(request, 'appforfirst/task.html', ctx)
+        return render(request, 'appforfirst/newtemplates/task.html', ctx)
 
 class Diary_View(LoginRequiredMixin, View):
     def get(self, request, id):
         diary = models.Diary.objects.filter(id=id)
         ctx = {'diary': diary}
-        return render(request, 'appforfirst/diary.html', ctx)
+        return render(request, 'appforfirst/newtemplates/diary.html', ctx)
 
 class Project_View(LoginRequiredMixin, View):
     def get(self, request, id):
         project = models.Project.objects.filter(id=id)
         ctx = {'project': project}
-        return render(request, 'appforfirst/project.html', ctx)
+        return render(request, 'appforfirst/newtemplates/project.html', ctx)
 
 class ProjectCreate(LoginRequiredMixin, CreateView):
     model = models.Project
@@ -145,7 +145,7 @@ class TasksCreate(LoginRequiredMixin, CreateView):
 
 class Preview(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'appforfirst/min_welcome.html')
+        return render(request, 'appforfirst/newtemplates/min_welcome.html')
 
 class DiaryCreate(LoginRequiredMixin, CreateView):
     model = models.Diary
@@ -174,5 +174,5 @@ class DeleteProject_View(LoginRequiredMixin, View):
     def get(self, request, id):
         p = models.Project.objects.get(id=id)
         p.delete()
-        return render(request, 'appforfirst/del_project_ok.html')
+        return render(request, 'appforfirst/newtemplates/del_project_ok.html')
 

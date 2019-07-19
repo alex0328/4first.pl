@@ -1,0 +1,20 @@
+{% extends 'appforfirst/newtemplates/min_base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+                            {% for task in events %}
+							<h2>{{ task.reminder_name}}</h2>
+                                  <li> <p>Opis: {{ task.reminder_description }}</p></li>
+                                  <li> <p>Data utworzenia: {{ task.reminder_data_utworzenia|date:'Y-m-d H:i' }}</p></li>
+                                  <li> <p>Data wykonania: {{ task.reminder_data_wykonania|date:'Y-m-d H:i' }}</p></li>
+                                  <li> <p>Czy wykonany: {{ task.reminder_is_done }}</p></li>
+                                  <a href="{% url 'appforfirst:project' task.reminder_project_id %}">
+                                    <li> <p>Przypisany do projektu: {{ task.reminder_project.project_name }}</p></li>
+                            {% endfor %}
+                            <a href="{% url 'appforfirst:welcome' %}" role="button">Wróć do listy zadań</a>
+
+
+{% endblock %}

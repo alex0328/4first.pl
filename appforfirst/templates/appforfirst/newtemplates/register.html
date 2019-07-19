@@ -1,0 +1,13 @@
+{% extends 'appforforst/newtemplates/min_base.html' %}
+{% block content %}
+        <form method="POST">
+            {% csrf_token %}
+                {{ form }}
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+            <small>
+                Already Have an Account? <a href="{% url 'login' %}">Sign in</a>
+            </small>
+
+{% endblock content %}

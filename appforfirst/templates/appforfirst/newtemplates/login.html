@@ -1,11 +1,12 @@
-
 {% extends 'appforfirst/newtemplates/min_base.html' %}
 {% block content %}
     <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
-        {{ form.as_p }}
+        <p>{{ form.as_p }}</p>
         <input type="submit" value="Zaloguj">
     </form>
+    <div>
+    <h2>Nie masz konta?</h2>
         <a href="{% url 'register' %}">Zarejestruj się</a>
-
+    </div>
 {% endblock content %}

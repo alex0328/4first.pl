@@ -1,0 +1,27 @@
+{% extends 'appforfirst/newtemplates/min_base.html' %}
+{% load static %}
+{% block content %}
+
+                            {% for task in diary %}
+							<h2>{{ task.diary_name}}</h2>
+                                  <li> <p>Opis: {{ task.diary_description }}</p></li>
+                                  <li> <p>Data utworzenia: {{ task.diary_data_utworzenia|date:'Y-m-d H:i' }}</p></li>
+                                  <li> <p>Data wykonania: {{ task.diary_data_wykonania|date:'Y-m-d H:i' }}</p></li>
+                                  <li> <p>Data startu: {{ task.diary_start_data|date:'Y-m-d H:i' }}</p></li>
+                                  <li> <p>Data zakończenia: {{ task.diary_end_data|date:'Y-m-d H:i' }}</p></li>
+                                  <li> <p>Data powrotu: {{ task.diary_data_powrotu|date:'Y-m-d H:i' }}</p></li>
+                                  <li> <p>1: {{ task.custom_field1 }}</p></li>
+                                  <li> <p>2: {{ task.custom_field2 }}</p></li>
+                                  <li> <p>3: {{ task.custom_field3 }}</p></li>
+                                  <li> <p>4: {{ task.custom_field4 }}</p></li>
+                                  <li> <p>5: {{ task.custom_field5 }}</p></li>
+                                  <li> <p>6: {{ task.custom_field6 }}</p></li>
+                                  <li> <p>7: {{ task.custom_field7 }}</p></li>
+                                  <li> <p>8: {{ task.custom_field8 }}</p></li>
+                                  <li> <p>9: {{ task.custom_field9 }}</p></li>
+                                  <li> <p>10: {{ task.custom_field10 }}</p></li>
+                                    <a href="{% url 'appforfirst:project' task.task_project_id %}">
+                                  <li class=" "> <p>Przypisany do projektu: {{ task.diary_project }}</p></li>
+                            {% endfor %}
+                            <a href="{% url 'appforfirst:welcome' %}" role="button">Wróć do listy zadań</a>
+{% endblock %}

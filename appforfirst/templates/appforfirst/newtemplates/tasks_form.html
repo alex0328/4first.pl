@@ -1,0 +1,10 @@
+{% extends 'appforfirst/newtemplates/min_base.html' %}
+{% load static %}
+{% block content %}
+
+<form action="" method="post" class="mx-auto add_project_form">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Save">
+</form>
+{% endblock %}
