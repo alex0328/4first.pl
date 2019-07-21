@@ -17,3 +17,9 @@ class TaskForm(forms.ModelForm):
         model = models.Tasks
         fields = ['task_type', 'task_name', 'task_description',
                   'task_start_time', 'task_end_time', 'task_is_done', 'task_project']
+
+
+class ContactForm(forms.Form):
+    from_email = forms.EmailField(required=True)
+    subject = forms.CharField(required=True)
+    message = forms.CharField(widget=forms.Textarea, required=True)

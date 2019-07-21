@@ -1,18 +1,130 @@
 {% extends 'appforfirst/newtemplates/min_base.html' %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'appforfirst/index.css' %}">
 {% block content %}
+<link rel="stylesheet" href="{% static 'appforfirst/index.css' %}">
 
 
 
 <div class="wrapper">
         <section class="main-pic">
+                <div class="img-pic">
                 <img src="{% static 'appforfirst/img/main-pic.jpg' %}">
-                
-                
-                
+                        <div class="belt"></div>
+                        <div class="img-half-overlay"></div>
+                        <div class="slogan-h2">
+                                <h2><span class="underline">Let's brake</span><br> all rules</h2>
+                        </div>
+                        <div class="slogan-h3">
+                                <h3>
+We are an independent, creative agency specializing in applications and websites focused on the needs of our clients.</h3>
+                        </div>
+
+                        </div>
         </section>
+        <section class="section2-main-info container">
+                <div class="section-title">
+                        <h1>Effective technologies</h1>
+                </div>
+                <div class="section-info">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+        </section>
+        <section class="separator">
+
+        </section>
+          <section class="splitview skewed">
+        <div class="panel bottom">
+            <div class="content">
+                <div class="description section-title">
+                    <h2>To save your time</h2>
+                    <p>And get new openminded clients</p>
+                </div>
+
+                <img src="{% static 'appforfirst/img/fancy-org.jpg' %}" alt="Original">
+            </div>
+        </div>
+
+        <div class="panel top">
+            <div class="content">
+                <div class="description">
+                    <h2>Join us!</h2>
+                    <p>And check how we can use newest technologies</p>
+                </div>
+
+                <img src="{% static 'appforfirst/img/fancy-b&w.jpg' %}" alt="Duotone">
+            </div>
+        </div>
+
+        <div class="handle"></div>
+    </section>
+<section class="section-info2">
+                <div class="section-title">
+                        <h2>What are we doing</h2>
+                </div>
+    <div class="">
+
+  <div class="max-width1200">
+    <div class="flex-box">
+
+      <div class="flex-element">
+        <img class="" src="{% static 'appforfirst/img/icon1.jpg' %}" alt="">
+        <div class="">
+          <h3>Tworzymy i budujemy aplikacje i strony internetowe</h3>
+          <p class="info-paragraph">Projektujemy, tworzymy i wdrażamy nowoczesne, oparte o najnowsze badania użytoeczności aplikacje internetowe, strony internetowe i wszystko co związane z webdevelopmentem. Pomagamy generować ruch na istniejących stronach. Tworzymy całe kampanie oparte o model sprzedaży za pomocą stron typu landingpage. </p>
+        </div>
+      </div>
+
+      <div class="flex-element">
+        <img class="" src="{% static 'appforfirst/img/icon2.jpg' %}" alt="">
+        <div class="">
+          <h3>Stale poszerzamy naszą wiedzę i horyzonty</h3>
+          <p class="info-paragraph">Rozwijamy się non stop. Obserwujemy rynki, śledzimy najnowsze technologie i trendy. Zamieniamy Exele, pivoty na SQL, przyjemne w użyciu interfejsy. Automatyzujemy, oszczędzamy czas sobie i naszym klientom.</p>
+        </div>
+      </div>
+
+      <div class="flex-element">
+        <img class="" src="{% static 'appforfirst/img/icon3.jpg' %}" alt="">
+        <div class="">
+          <h3>Dzielimy się naszymi doświadczeniami</h3>
+          <p class="info-paragraph">Dzień bez nauki to dzień stracony. Chętnie dzielimy się naszą wiedzą i doświadczeniem z naszymi klientami. Współpraca z nami nie jest tylko wykonaniem zlecenia. To także doradztwo. Korzystanie z naszych doświadczeń, które przekłada się na realne korzyści.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
+    </section>
+            </section>
+        <section class="separator">
+        </section>
+            <section class="section-form">
+<img class="form-img" src="{% static 'appforfirst/img/form-backgr-bw.jpg' %}" alt="">
+                <div class="form-overlay"></div>
+                <div class="belt"></div>
+                <div class="form-form">
+                    <div class="form-inputs">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="form-actions">
+                              <button type="submit">Send</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+</div>
+
+
+
+
+
 
 
 
