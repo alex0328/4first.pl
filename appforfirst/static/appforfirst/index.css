@@ -298,6 +298,7 @@ p {
 
 .section-form {
     position: relative;
+    max-height: 700px;
 }
 
 .section-form img {
@@ -319,4 +320,144 @@ p {
     width: 100%;
     top:0;
 }
+
+.form-form {
+    display: grid;
+    grid-template-columns: 50% auto;
+    padding: 60px 217px;
+}
+
+.form-part2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-part1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-info-content {
+    max-width: 750px;
+    z-index: 9;
+}
+
+form label {
+    display: block;
+    margin: 10px 0;
+}
+
+form input,
+form textarea,
+button{
+    border: 4px solid black;
+    width: 100%;
+}
+
+form input {
+    height: 60px;
+}
+
+form button {
+    height: 60px;
+    background-color: black;
+    color: #fff;
+    font-size: 40px;
+    transition: 0.4s;
+}
+
+form button:hover {
+    background-color: #4bc7e0;
+    border: 4px solid #fff;
+    transform: scale(1.1);
+}
+
+/*footer */
+
+.foot-wrapper {
+    max-height: 350px;
+    overflow: hidden;
+    position: relative;
+}
+
+.foot-img {
+    width: 100%;
+}
+
+.foot-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-color: #ffffffe3;
+}
+
+.foot-content {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+}
+
+.foot-slogan {
+    text-align: center;
+    font-size: 50px;
+    margin: .67em 0;
+}
+
+.cert img {
+    max-height: 150px;
+    text-align: center;
+    margin: auto;
+    padding: 20px;
+}
+
+.cert {
+    text-align: center;
+    margin: auto;
+}
+
+
+
+.foot-menu-elements li,
+.foot-menu-elements li a {
+    font-size: 24px;
+    color: #000000;
+    padding: 10px;
+    list-style: none;
+    text-decoration: none;
+    transition: 0.4s;
+    display: inline;
+}
+
+.foot-menu-elements li:hover a,
+.foot-menu-elements li:hover {
+    transform: scale(1.1);
+    color: #4bc7e0;
+}
+
+.foot-menu-container {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .67em 0;
+}
+
+.foot-add {
+    background-color: #4bc7e0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foot-add h5 {
+    font-size: 20px;
+    text-align: center;
+}
+
 

@@ -18,4 +18,5 @@ urlpatterns = [
     path('project/<int:id>', views.Project_View.as_view(), name='project'),
     path('preview', views.Preview.as_view(), name='preview'),
     path('del_poject/<int:id>', views.DeleteProject_View.as_view(), name='del_project'),
+    path('success/', views.successView, name='success')
 ]

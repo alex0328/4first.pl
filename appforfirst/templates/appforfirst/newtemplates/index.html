@@ -10,6 +10,9 @@
                 <div class="img-pic">
                 <img src="{% static 'appforfirst/img/main-pic.jpg' %}">
                         <div class="belt"></div>
+                        <div id="nav-logo">
+			                <span>4first</span>
+		                </div>
                         <div class="img-half-overlay"></div>
                         <div class="slogan-h2">
                                 <h2><span class="underline">Let's brake</span><br> all rules</h2>
@@ -103,7 +106,13 @@ We are an independent, creative agency specializing in applications and websites
                 <div class="form-overlay"></div>
                 <div class="belt"></div>
                 <div class="form-form">
-                    <div class="form-inputs">
+                    <div class="form-part1">
+                        <div class="form-info-content">
+                            <h2>Contact Us</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                            </div>
+                    </div>
+                    <div class="form-inputs form-part2">
                         <form method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
@@ -114,9 +123,52 @@ We are an independent, creative agency specializing in applications and websites
                     </div>
 
 
+
                 </div>
 
             </section>
+    <footer>
+        <div class="foot-wrapper">
+<img class="foot-img" src="{% static 'appforfirst/img/footer.jpg' %}" alt="">
+                <div class="foot-overlay"></div>
+                <div class="foot-content">
+                    <div class="foot-slogan">
+                        <h3>Nic się samo nie wydarzy</h3>
+                    </div>
+                    <div class="cert">
+                        <img src="{% static 'appforfirst/img/task-complete.png' %}">
+                        <img src="{% static 'appforfirst/img/certification.png' %}">
+                        <img src="{% static 'appforfirst/img/diploma-with-a-star.png' %}">
+                    </div>
+                    <div class="foot-menu">
+                        <div class="foot-menu-container">
+                            <ul class="foot-menu-elements">
+                                <li><a href="{% url 'appforfirst:index' %}">Home</a> </li>
+                                <li><a href="{% url 'appforfirst:welcome' %}">Welcome</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Hire Us</a></li>
+                                <li><a href="#">Contact</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="{% url 'appforfirst:welcome' %}"></a></li>
+                                <li><a href="{% url 'logout' %}">Wyloguj {{ request.user}}</a></li>
+                                            {% else %}
+                                                <li>Zacznij działać</li>
+                                            {% endif %}
+                                    {% if user.is_authenticated %}
+                                <li><a href="index.html">Witaj {{ request.user}}</a></li>
+                                    {% else %}
+                                <li><a href="{% url 'login' %}">Zaloguj się</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        <div class="foot-add">
+<h5>Made with big passion by: 4tea</h5>
+        </div>
+    </footer>
+
 
 
 </div>

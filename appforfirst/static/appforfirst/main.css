@@ -102,8 +102,8 @@
 
 #nav-logo span {
     font-size: 100px;
-    color: #4bc7e07a;
-    border: 15px solid #4bc7e07a;
+    color: #4bc7e0;
+    border: 15px solid #4bc7e0;
     padding: 10px;
 }
 
@@ -126,7 +126,7 @@
 
 .main-menu.main-menu-active {
     right: 0;
-    opacity: 1;
+    opacity: 0.96;
     transition: all 0.8s;
     display: block;
     position: fixed;
