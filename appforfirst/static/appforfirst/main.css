@@ -158,4 +158,47 @@
     color: #fff700;
 }
 
+.foot-menu-elements li,
+.foot-menu-elements li a {
+    font-size: 24px;
+    color: #000000;
+    padding: 10px;
+    list-style: none;
+    text-decoration: none;
+    transition: 0.4s;
+    display: inline;
+}
+
+.foot-menu-elements li:hover a,
+.foot-menu-elements li:hover {
+    transform: scale(1.1);
+    color: #4bc7e0;
+}
+
+.foot-menu-container {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .67em 0;
+}
+
+.foot-add {
+    background-color: #4bc7e0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foot-add h5 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.foot-pic {
+    max-width: 286px;
+}
+
 
