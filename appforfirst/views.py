@@ -20,8 +20,10 @@ from django.conf import settings
 class MainPageView(View):
     def get(self, request):
         form = ContactForm()
+        req = request.META['HTTP_HOST']
         ctx = {
-            "form": form
+            "form": form,
+            "req": req
         }
         return render(request, 'appforfirst/newtemplates/index.html', ctx)
 
@@ -35,7 +37,13 @@ class MainPageView(View):
                 send_mail(subject, message, from_email, ['lukasz.szlaszynski@4tea.pl'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-            return HttpResponse('Supcio')
+            mess = "Wiadomość została wysłana poprawnie"
+            form = ContactForm(request.POST)
+            ctx = {
+                "mess": mess,
+                "form": form
+            }
+            return render(request, 'appforfirst/newtemplates/index.html', ctx)
 
 
 def successView(request):
@@ -201,6 +209,9 @@ class DeleteProject_View(LoginRequiredMixin, View):
         p.delete()
         return render(request, 'appforfirst/newtemplates/del_project_ok.html')
 
+class Netguru(View):
+    def get(self, request):
+        return render(request, 'appforfirst/netguru/netguru.html')
 
 
 

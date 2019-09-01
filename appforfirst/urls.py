@@ -17,6 +17,7 @@ urlpatterns = [
     path('diary/<int:id>', views.Diary_View.as_view(), name='diary'),
     path('project/<int:id>', views.Project_View.as_view(), name='project'),
     path('preview', views.Preview.as_view(), name='preview'),
+    path('netguru', views.Netguru.as_view(), name='netguru'),
     path('del_poject/<int:id>', views.DeleteProject_View.as_view(), name='del_project'),
     path('success/', views.successView, name='success')
 ]

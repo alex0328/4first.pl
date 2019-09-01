@@ -419,6 +419,60 @@ form button:hover {
     margin: auto;
 }
 
+@media (max-width: 1200px) {
+    .slogan-h3 {
+        position: absolute;
+        bottom: 10%;
+        left: 9%;
+        color: white;
+        z-index: 3;
+        width: 67%;
+    }
+    .description h2 {
+        font-size: 36px;
+    }
+    .form-form {
+        padding: 60px 40px;
+    }
+    .section-info2 h3 {
+        font-size: 25px;
+        padding: 15px;
+    }
+    .form-info-content {
+        padding-right: 50px;
+    }
+}
+
+@media (max-width: 991px) {
+    #nav-icon3 {
+        right: 149px;
+        width: 77px;
+    }
+    #nav-icon3 span:nth-child(2), #nav-icon3 span:nth-child(3) {
+        top: 23px!important;
+    }
+    #nav-icon3 span:nth-child(4) {
+        top: 46px!important;
+    }
+    #nav-icon3 span {
+        height: 11px;
+    }
+    .slogan-h3 {
+        width: 80%;
+        left: 16%;
+    }
+    .section-info p {
+        padding: 16px 56px;
+    }
+    .flex-element {
+        height: 415px;
+        width: 100%;
+    }
+    .flex-box {
+        flex-wrap: wrap;
+    }
+}
+
 
 
 

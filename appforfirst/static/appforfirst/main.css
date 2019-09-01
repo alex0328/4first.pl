@@ -95,8 +95,8 @@
 
 #nav-logo {
     position: absolute;
-    top: 94px;
-    right: 30%;
+    top: 29px;
+    right: 37%;
     z-index: 10;
 }
 
@@ -158,6 +158,10 @@
     color: #fff700;
 }
 
+.foot-menu-elements {
+    text-align: center;
+}
+
 .foot-menu-elements li,
 .foot-menu-elements li a {
     font-size: 24px;
@@ -178,9 +182,6 @@
 .foot-menu-container {
     position: absolute;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: .67em 0;
 }
 
@@ -197,8 +198,22 @@
     text-align: center;
 }
 
-.foot-pic {
+.foot-pic img {
     max-width: 286px;
 }
+
+.content-columns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 1300px) {
+    .main-menu {
+        width: 100%;
+    }
+}
+
+
 
 
