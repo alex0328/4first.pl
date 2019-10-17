@@ -1,17 +1,20 @@
 {% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 <!DOCTYPE html>
 
-	<head>
+<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>4first</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="{% static 'appforfirst/main.css' %}">
+<!-- stylesheet-->
+<link rel="stylesheet" href="{% static 'appforfirst/main.css' %}">
 
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
-<link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Roboto+Condensed&display=swap" rel="stylesheet">
 
 
@@ -20,23 +23,50 @@
 	<body>
 
 
-	<header>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Logo</a>
 
-		<div id="nav-icon3">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'appforfirst:index' %}">Home</a>
+    </li>
+  {% if user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'appforfirst:welcome' %}">Welcome</a>
+    </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+  {% else %}
+  <li><a class="nav-link" href="{% url 'login' %}">Zaloguj</a></li>
+  {% endif %}
 
-	<div class="main-menu">
-		<div class="menu-container">
-			<ul class="menu-elements">
+
+
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Dropdown link
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'appforfirst:index' %}">Home</a>
+                    {% if user.is_authenticated %}
+        <a class="dropdown-item" href="{% url 'appforfirst:welcome' %}">Welcome</a>
+        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+          {% else %}
+          <a class="dropdown-item" href="{% url 'login' %}">Zaloguj</a>
+          {% endif %}
+        <a class="dropdown-item" href="#">Link 3</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<ul>
 				<li><a href="{% url 'appforfirst:index' %}">Home</a> </li>
 				<li><a href="{% url 'appforfirst:welcome' %}">Welcome</a></li>
-				<li><a href="#">About Us</a></li>
-				<li><a href="#">Hire Us</a></li>
-				<li><a href="#">Contact</a></li>
 				{% if user.is_authenticated %}
 				<li><a href="{% url 'appforfirst:welcome' %}"></a></li>
 				<li><a href="{% url 'logout' %}">Wyloguj {{ request.user}}</a></li>
@@ -44,84 +74,16 @@
                                 <li>Zacznij działać</li>
                             {% endif %}
                     {% if user.is_authenticated %}
-				<li><a href="index.html">Witaj {{ request.user}}</a></li>
+				<li><a href={% url 'appforfirst:welcome' %}>Witaj {{ request.user}}</a></li>
                     {% else %}
 				<li><a href="{% url 'login' %}">Zaloguj się</a></li>>
-			</ul>
-		</div>
-	</div>
+</ul>
 
 
 {% endif %}
 
-		</header>
         {% block content %}
         {% endblock %}
-
-	<footer>
-        <div class="foot-wrapper">
-		<img class="foot-img" src="{% static 'appforfirst/img/footer.jpg' %}" alt="">
-                <div class="foot-overlay"></div>
-						<div class="foot-content">
-								<div class="foot-slogan">
-									<h3>Nic się samo nie wydarzy</h3>
-								</div>
-								<div class="content-columns container">
-									<div class="footer-column2">
-										<div class="cert">
-											<img src="{% static 'appforfirst/img/task-complete.png' %}">
-											<img src="{% static 'appforfirst/img/certification.png' %}">
-											<img src="{% static 'appforfirst/img/diploma-with-a-star.png' %}">
-										</div>
-						</div>
-
-
-					</div>
-																									<div class="foot-menu">
-											<div class="foot-menu-container">
-												<ul class="foot-menu-elements">
-													<li><a href="{% url 'appforfirst:index' %}">Home</a> </li>
-													<li><a href="{% url 'appforfirst:welcome' %}">Welcome</a></li>
-													<li><a href="#">About Us</a></li>
-													<li><a href="#">Hire Us</a></li>
-													<li><a href="#">Contact</a></li>
-													{% if user.is_authenticated %}
-													<li><a href="{% url 'appforfirst:welcome' %}"></a></li>
-													<li><a href="{% url 'logout' %}">Wyloguj {{ request.user}}</a></li>
-																{% else %}
-																	<li>Zacznij działać</li>
-																{% endif %}
-														{% if user.is_authenticated %}
-													<li><a href="index.html">Witaj {{ request.user}}</a></li>
-														{% else %}
-													<li><a href="{% url 'login' %}">Zaloguj się</a></li>
-												</ul>
-											</div>
-									</div>
-							{% endif %}
-            </div>
-        <div class="foot-add">
-<h5>Made with big passion by: 4tea</h5>
-        </div>
-    </footer>
-
-
-
-	<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-		<script
-  src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"
-  integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="
-  crossorigin="anonymous"></script>
-
-
-	<script src="{% static 'appforfirst/scripts.js' %}"></script>
-
-
-
-
 
 	</body>
 </html>

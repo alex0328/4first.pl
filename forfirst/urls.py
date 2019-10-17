@@ -30,7 +30,7 @@ urlpatterns = [
     path('logout/',
          auth_views.LogoutView.as_view(template_name='appforfirst/newtemplates/logout.html'),
          name='logout'),
-    path('register', views.RegisterView.as_view(),name='register'),
+    path('register', views.RegisterView.as_view(),name='register'),#v
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

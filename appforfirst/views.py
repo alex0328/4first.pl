@@ -14,9 +14,13 @@ from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import ContactForm
+import requests
+import json
+
 from django.conf import settings
 
 
+#index
 class MainPageView(View):
     def get(self, request):
         form = ContactForm()
@@ -38,7 +42,7 @@ class MainPageView(View):
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             mess = "Wiadomość została wysłana poprawnie"
-            form = ContactForm(request.POST)
+            form = ContactForm()
             ctx = {
                 "mess": mess,
                 "form": form
@@ -49,6 +53,8 @@ class MainPageView(View):
 def successView(request):
     return HttpResponse('Success! Thank you for your message.')
 
+
+#register (in main urls)
 class RegisterView(View):
     form_class = forms.UserRegisterForm
     template_name = 'appforfirst/newtemplates/register.html'
@@ -68,6 +74,8 @@ class RegisterView(View):
 
         return render(request, self.template_name, {'form': form})
 
+
+#welcome/
 class WelcomeView(LoginRequiredMixin, View):
     def get(self, request):
         date = datetime.now()
@@ -98,7 +106,12 @@ class WelcomeView(LoginRequiredMixin, View):
                                                      diary_data_utworzenia__day=todays_date.day,
                                                      diary_user=request.user)
 
-
+        url = 'http://serwis.mobilotto.pl/mapi_v6/index.php?json=getLotto'
+        wyniki = requests.get(url)
+        na_strone = wyniki.json()
+        numerki = na_strone['numerki']
+        data_losowania = na_strone['data_losowania']
+        numer_losowania = na_strone['num_losowania']
         ctx = {'all_todays_events': all_todays_events,
                'date': date,
                'weekday': weekday,
@@ -106,54 +119,46 @@ class WelcomeView(LoginRequiredMixin, View):
                'todays_events': todays_events,
                'todays_tasks': todays_tasks,
                'todays_diary': todays_diary,
+               'data_losowania': data_losowania,
+               'numer_losowania' : numer_losowania,
+               'numerki': numerki
                }
         return render(request, 'appforfirst/newtemplates/min_welcome.html', ctx)
 
 
-class WelcomeView2(LoginRequiredMixin, View):
-    def get(self, request):
-        date = datetime.now()
-        todays_date = datetime.today()
-        weekdayiso = datetime.now().isoweekday()
-        weekdays = ["Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota","Niedziela"]
-        weekday = weekdays[int(weekdayiso-1)]
-
-        all_todays_events = models.Project.objects.filter(Q(diary__diary_data_utworzenia__day=todays_date.day) |
-                                                          Q(reminder__reminder_data_wykonania__day=todays_date.day) |
-                                                          Q(tasks__task_start_time__day=todays_date.day))
-
-
-
-
-        ctx = {'all_todays_events': all_todays_events,
-               'date': date,
-               }
-        return render(request, 'appforfirst/newtemplates/min_welcome2.html', ctx)
-
+#event/<int:id>
 class Reminder_View(LoginRequiredMixin, View):
     def get(self, request, id):
         events = models.Reminder.objects.filter(id=id)
         ctx = {'events': events}
         return render(request, 'appforfirst/newtemplates/event.html', ctx)
 
+
+#task/<int:id>
 class Task_View(LoginRequiredMixin, View):
     def get(self, request, id):
         tasks = models.Tasks.objects.filter(id=id)
         ctx = {'tasks': tasks}
         return render(request, 'appforfirst/newtemplates/task.html', ctx)
 
+
+#diary/<int:id>
 class Diary_View(LoginRequiredMixin, View):
     def get(self, request, id):
         diary = models.Diary.objects.filter(id=id)
         ctx = {'diary': diary}
         return render(request, 'appforfirst/newtemplates/diary.html', ctx)
 
+
+#project/<int:id>
 class Project_View(LoginRequiredMixin, View):
     def get(self, request, id):
         project = models.Project.objects.filter(id=id)
         ctx = {'project': project}
         return render(request, 'appforfirst/newtemplates/project.html', ctx)
 
+
+#addproject/
 class ProjectCreate(LoginRequiredMixin, CreateView):
     model = models.Project
     fields = ['project_name','project_description','project_start_date','project_end_date','project_status']
@@ -163,10 +168,7 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
         form.instance.project_user = self.request.user
         return super().form_valid(form)
 
-class ProjectDelete(LoginRequiredMixin, View):
-    def get(self, request, project_id):
-        pass
-
+#addtask/
 class TasksCreate(LoginRequiredMixin, CreateView):
     model = models.Tasks
     form_class = forms.TaskForm
@@ -176,10 +178,8 @@ class TasksCreate(LoginRequiredMixin, CreateView):
         form.instance.task_user = self.request.user
         return super().form_valid(form)
 
-class Preview(LoginRequiredMixin, View):
-    def get(self, request):
-        return render(request, 'appforfirst/newtemplates/min_welcome.html')
 
+#adddiary/
 class DiaryCreate(LoginRequiredMixin, CreateView):
     model = models.Diary
     fields = ['diary_name','diary_description','diary_start_data',
@@ -193,6 +193,8 @@ class DiaryCreate(LoginRequiredMixin, CreateView):
         form.instance.diary_user = self.request.user
         return super().form_valid(form)
 
+
+#addreminder/
 class ReminderCreate(LoginRequiredMixin, CreateView):
     model = models.Reminder
     fields = ['reminder_name','reminder_description','reminder_data_wykonania',
@@ -203,15 +205,15 @@ class ReminderCreate(LoginRequiredMixin, CreateView):
         form.instance.reminder_user = self.request.user
         return super().form_valid(form)
 
+
+#del_poject/<int:id>
 class DeleteProject_View(LoginRequiredMixin, View):
     def get(self, request, id):
         p = models.Project.objects.get(id=id)
         p.delete()
         return render(request, 'appforfirst/newtemplates/del_project_ok.html')
 
-class Netguru(View):
-    def get(self, request):
-        return render(request, 'appforfirst/netguru/netguru.html')
+
 
 
 
