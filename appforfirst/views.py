@@ -16,6 +16,7 @@ from django.shortcuts import render, redirect
 from .forms import ContactForm
 import requests
 import json
+import feedparser
 
 from django.conf import settings
 
@@ -106,22 +107,62 @@ class WelcomeView(LoginRequiredMixin, View):
                                                      diary_data_utworzenia__day=todays_date.day,
                                                      diary_user=request.user)
 
+        #lotto and news
+
         url = 'http://serwis.mobilotto.pl/mapi_v6/index.php?json=getLotto'
-        wyniki = requests.get(url)
-        na_strone = wyniki.json()
-        numerki = na_strone['numerki']
-        data_losowania = na_strone['data_losowania']
-        numer_losowania = na_strone['num_losowania']
-        ctx = {'all_todays_events': all_todays_events,
-               'date': date,
-               'weekday': weekday,
-               'today': all_for_today_base,
-               'todays_events': todays_events,
-               'todays_tasks': todays_tasks,
-               'todays_diary': todays_diary,
-               'data_losowania': data_losowania,
-               'numer_losowania' : numer_losowania,
-               'numerki': numerki
+        req = requests.get(url).json()
+        num_losowania = req['num_losowania']
+        numerki_tosort = req['numerki']
+        numery_order = numerki_tosort.split(',')
+        numerki_tosort = []
+        for i in numery_order:
+            if int(i) < 10:
+                i = "0" + i
+            numerki_tosort.append(i)
+        data_losowania_raw = req['data_losowania']
+        cut = data_losowania_raw.split(' ')
+        data_losowania = cut[0]
+        numerki = sorted(numerki_tosort)
+        # print(numerki)
+        rekord_z_data = models.LottoNumbers.objects.filter(draw_date=data_losowania)
+        # print(rekord_z_data)
+        if not rekord_z_data:
+            models.LottoNumbers.objects.create(
+                draw_date=data_losowania,
+                draw_number=num_losowania,
+                number_1=numerki[0],
+                number_2=numerki[1],
+                number_3=numerki[2],
+                number_4=numerki[3],
+                number_5=numerki[4],
+                number_6=numerki[5]
+            )
+        # print('------------')
+        # print(request.is_ajax())
+        # print()
+
+        feeds = feedparser.parse('https://www.tvn24.pl/najnowsze.xml')
+        # news_title = []
+        # news_href = []
+        # for j in feeds.entries:
+        #     news_title.append(j.title)
+        #     news_href.append(j.links[0]['href'])
+        news={}
+        for j in feeds.entries:
+            news[j.title]=j.links[0]['href']
+        print(news)
+        #print(news_title)
+        ctx = { 'news': news,
+                'numerki': ', '.join(numerki),
+                'num_losowania': num_losowania,
+                'data_losowania': data_losowania,
+                'all_todays_events': all_todays_events,
+                'date': date,
+                'weekday': weekday,
+                'today': all_for_today_base,
+                'todays_events': todays_events,
+                'todays_tasks': todays_tasks,
+                'todays_diary': todays_diary,
                }
         return render(request, 'appforfirst/newtemplates/min_welcome.html', ctx)
 

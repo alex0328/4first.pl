@@ -87,3 +87,17 @@ class Reminder(models.Model):
     def __str__(self):
         return self.reminder_name
 
+class LottoNumbers(models.Model):
+    draw_date = models.CharField(max_length=20)
+    draw_number = models.CharField(max_length=20)
+    number_1 = models.CharField(max_length=2, default='0')
+    number_2 = models.CharField(max_length=2, default='0')
+    number_3 = models.CharField(max_length=2, default='0')
+    number_4 = models.CharField(max_length=2, default='0')
+    number_5 = models.CharField(max_length=2, default='0')
+    number_6 = models.CharField(max_length=2, default='0')
+
+    def __str__(self):
+        return "Data: {}, numery: {}, {}, {}, {}, {}, {}".format(self.draw_date, self.number_1, self.number_2, self.number_3, self.number_4, self.number_5, self.number_6)
+
+
