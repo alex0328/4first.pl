@@ -79,29 +79,32 @@ class RegisterView(View):
 #welcome/
 class WelcomeView(LoginRequiredMixin, View):
     def get(self, request):
-        date = datetime.now()
-        todays_date = datetime.today()
-        weekdayiso = datetime.now().isoweekday()
+        date = datetime.now()  #raw date
+        todays_date = datetime.today() #raw todays date
+        weekdayiso = datetime.now().isoweekday() #weekday
         weekdays = ["Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota","Niedziela"]
-        weekday = weekdays[int(weekdayiso-1)]
+        weekday = weekdays[int(weekdayiso-1)] #translation weekday
 
+        #querry for todays events
         all_todays_events = models.Project.objects.filter(Q(diary__diary_data_utworzenia__day=todays_date.day) |
                                                           Q(reminder__reminder_data_wykonania__day=todays_date.day) |
                                                           Q(tasks__task_start_time__day=todays_date.day))
 
 
+        #query for all projects
         all_for_today_base = models.Project.objects.filter(project_user=request.user)
 
+        #query for todays reminders
         todays_events = models.Reminder.objects.filter(reminder_data_wykonania__year=todays_date.year,
                                                             reminder_data_wykonania__month=todays_date.month,
                                                             reminder_data_wykonania__day=todays_date.day,
                                                             reminder_user=request.user)
-
+        #query for todays tasks
         todays_tasks = models.Tasks.objects.filter(task_start_time__year=todays_date.year,
                                                      task_start_time__month=todays_date.month,
                                                      task_start_time__day=todays_date.day,
                                                      task_user=request.user)
-
+        #query for todays diaries
         todays_diary = models.Diary.objects.filter(diary_data_utworzenia__year=todays_date.year,
                                                      diary_data_utworzenia__month=todays_date.month,
                                                      diary_data_utworzenia__day=todays_date.day,
@@ -109,12 +112,15 @@ class WelcomeView(LoginRequiredMixin, View):
 
         #lotto and news
 
-        url = 'http://serwis.mobilotto.pl/mapi_v6/index.php?json=getLotto'
-        req = requests.get(url).json()
-        num_losowania = req['num_losowania']
-        numerki_tosort = req['numerki']
-        numery_order = numerki_tosort.split(',')
-        numerki_tosort = []
+        #lotto
+        url = 'http://serwis.mobilotto.pl/mapi_v6/index.php?json=getLotto' # lotto api enpoint
+        req = requests.get(url).json() #request to api
+        num_losowania = req['num_losowania'] #number from reponse
+        numerki_tosort1 = req['numerki'] #numbers lotto from response
+        numery_order = numerki_tosort1.split(',') #split numbers
+
+        #?
+        numerki_tosort = [] #empty list for ordered list
         for i in numery_order:
             if int(i) < 10:
                 i = "0" + i
@@ -123,9 +129,15 @@ class WelcomeView(LoginRequiredMixin, View):
         cut = data_losowania_raw.split(' ')
         data_losowania = cut[0]
         numerki = sorted(numerki_tosort)
-        # print(numerki)
+        #print(numerki)
+        nums = {}
+        for idx, val in enumerate(numerki):
+            #print(idx, val)
+            nums[idx+1] = val
+        #print(nums)
+
+        #check in database is allready exist
         rekord_z_data = models.LottoNumbers.objects.filter(draw_date=data_losowania)
-        # print(rekord_z_data)
         if not rekord_z_data:
             models.LottoNumbers.objects.create(
                 draw_date=data_losowania,
@@ -138,22 +150,17 @@ class WelcomeView(LoginRequiredMixin, View):
                 number_6=numerki[5]
             )
         # print('------------')
-        # print(request.is_ajax())
+        print(request.is_ajax())
         # print()
 
-        feeds = feedparser.parse('https://www.tvn24.pl/najnowsze.xml')
-        # news_title = []
-        # news_href = []
-        # for j in feeds.entries:
-        #     news_title.append(j.title)
-        #     news_href.append(j.links[0]['href'])
-        news={}
+        #news section
+        feeds = feedparser.parse('https://www.tvn24.pl/najnowsze.xml') #news endpoint xml
+        news = {}
         for j in feeds.entries:
-            news[j.title]=j.links[0]['href']
-        print(news)
-        #print(news_title)
-        ctx = { 'news': news,
-                'numerki': ', '.join(numerki),
+            news[j.title] = j.links[0]['href']
+
+        ctx = {'news': news,
+                'numerki': nums,
                 'num_losowania': num_losowania,
                 'data_losowania': data_losowania,
                 'all_todays_events': all_todays_events,

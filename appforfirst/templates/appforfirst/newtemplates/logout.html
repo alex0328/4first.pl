@@ -1,10 +1,110 @@
 
+{% extends 'appforfirst/newtemplates/min_base.html' %}
+{% load static %}
 {% block content %}
-    <h2>Wylogowałeś się prawidłowo</h2>
+
+<section id="home" class="section-picture">
+        <div id="big-video" class="picture for-slogan">
+            <div class="slogan row" id="slogan-div">
+                <div class="col-lg-6 slogan_one">
+                    <div class="dot_1 dot"></div>
+                        <h2>Wylogowałeś się prawidłowo</h2>
     <div>
         <small">
-            <a href="{% url 'login' %}">Log in Again</a>
+            <a href="{% url 'login' %}" class="ffirst_button1">Log in Again</a>
         </small>
     </div>
     <h2>Życzymy miłego dnia i do zobaczenia wkrótce.</h2>
-{% endblock content %}
+                </div>
+                <div class="col-lg-6 slogan_two">
+                    <div class="dot_2 dot"></div>
+                    <div class="indiv_pic">
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </section>
+
+<!-- PICTURE SECTION END -->
+<!-- H1 SECTION START -->
+
+      <section id="about-sentence-section" class="about-sentence-section">
+      	  <div class="about-sentence-div container">
+        	<h1>Profesjonalne strony, aplikacje i systemy internetowe.</h1>
+        	<p>Dzisiaj istnienie firmy nieposiadającej witryny internetowej zawsze stoi pod znakiem zapytania. Badania wskazują, że z roku na rok liczba ludzi, poszukujących informacji w internecie sukcesywnie rośnie. Strony, witryny, sklepy, portale - to ograniczone tylko wyobraźnią rozwiązania, które wpływają na życie każdego z nas. Być może czasami nie zdajemy sobie sprawy jak bardzo.</p>
+        	<div class="about-sentence-button">
+        		<a href="#contact" class="contact internalLink">Learn more</a>
+        	</div>
+        </div>
+      </section>
+
+<!-- H1 SECTION END -->
+
+<section id="about" class="container">
+
+</section>
+<section id="more" class="more">
+
+</section>
+
+<!-- MARKETING SECTION START -->
+
+      <section id="marketing" class="container">
+        <div class="marketing-column-one">
+        </div>
+        <div class="marketing-column-two">
+        </div>
+      </section>
+
+<!-- MARKETING SECTION END -->
+<!-- CONTACT FORM SECTION -->
+
+      <section id="contact">
+        <div class="container">
+          <div class="section-about">
+              <h3 class="header-one">Kontakt</h3>
+          </div>
+        </div>
+          <div class="contact-all">
+            <div class="contact-address">
+              <div class="contact-pure-data">
+                <i class="fas fa-phone"></i>
+                <p>E-mail:<br/><a class="contact-type-email" href="mailto:biuro@4tea.pl">biuro@4tea.pl</a></p>
+                <i class="far fa-envelope"></i>
+                <p>Telefon:<br/><a href="tel:+48694037695">+48 694 037 695</a></p>
+                <i class="fas fa-map-marker-alt"></i>
+                <p>Adres:<br/><a href="#">ul. Odkryta 51C/11<br/>
+                03-140 Warszawa</a></p>
+              </div>
+            </div>
+            <div class="contact-title">
+              <h2>Zastanawiasz się nad swoją stroną www, blogiem lub serwisem?<br/> Potrzebujesz porady w wyborze technologii?<br/> A może chcesz zmodernizować już istniejące rozwiązanie? <br/>Skontaktuj się z nami. <br/>Dobierzemy, skroimy, doradzimy.
+              </h2>
+            </div>
+            <div id="send_form_status"></div>
+            <div class="contact-form" id="sendFormStatus">
+              <form method="post" action="/send_form.php" id="contact_form" class="form">
+                  <div class="contact-name contact">
+                    <input type="text" name="name" id="name" placeholder="Imię i nazwisko" class="formField input-text" />
+                  </div>
+                  <div class="contact-mail contact">
+                    <input type="text" name="email" id="email" placeholder="Aders e-mail" class="formField input-text" />
+                  </div>
+                   <div class="contact-message contact">
+                    <textarea name="message" id="message" placeholder="Wiadomość" class="formField input-text"></textarea>
+                  </div>
+                  <div class="contact-submit contact">
+                    <button id="sendBtn">Send</button>
+                  </div>
+                  <div id="send_form_status"></div>
+              </form>
+            </div>
+          </div>
+      </section>
+
+
+
+{% endblock %}
+
+

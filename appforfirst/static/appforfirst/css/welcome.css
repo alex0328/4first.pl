@@ -1,0 +1,54 @@
+.slogan_one h5 {
+    color: #fff;
+    font-size: 24px;
+}
+
+.slogan_one p,
+.slogan_two p {
+    color: #fff;
+    font-size: 18px;
+}
+
+.slogan_two h5 {
+    color: #fff;
+}
+
+.slogan_two {
+    padding: 120px;
+}
+
+.slogan .dot_3 {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 2%;
+}
+
+.welcome_mess {
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.slogan_two ul li a {
+    font-size: 10px;
+    margin: 5px;
+}
+
+.slogan_two ul li a p {
+    margin: 5px;
+}
+
+.nums {
+    color: black;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #fee300;
+    border-radius: 30px;
+}
+
+.margin-top20 {
+    margin-top: 20px;
+}
+

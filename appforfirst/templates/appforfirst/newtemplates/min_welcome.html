@@ -1,90 +1,199 @@
 {% extends 'appforfirst/newtemplates/min_base.html' %}
-
-{% load bootstrap4 %}
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
 {% load static %}
-
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'appforfirst/css/welcome.css' %}">
+{% endblock %}
 {% block content %}
-        <section class="banner_part banner_welcome">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="banner_text">
-                        <div class="banner_text_iner">
-                            <div class="container_for_background">
-                                <h5>Hi there {{ request.user }}</h5>
-                                <h5>Dzisiaj jest: {{weekday}}, {{date.day}}.{{date.month}}.{{date.year}}</h5>
-                                <h5 class="align-content-center">Ostatnie losowanie Lotto:</h5>
-                                <p>Numer losowania Lotto: {{ num_losowania }}</p>
-                                <p>Data ostatniego losowania: {{ data_losowania }}</p>
-                                <p>Wylosowane numery: {{ numerki }}</p>
-                            </div>
-                        </div>
-                    </div>
+
+<section id="home" class="section-picture">
+        <div id="big-video" class="picture for-slogan">
+            <div class="slogan row" id="slogan-div">
+                <div class="dot_1 dot"></div>
+                <div class="dot_2 dot"></div>
+                <div class="dot_3 dot"><p class="welcome_mess">Cześć {{ request.user }}<br>Dzisiaj jest: {{weekday}}, {{date.day}}.{{date.month}}.{{date.year}}</p></div>
+                <div class="col-lg-6 slogan_one">
+
+                    <h5 class="">Ostatnie losowanie Lotto:</h5>
+                    <p>Numer losowania Lotto: {{ num_losowania }}</p>
+                    <p>Data ostatniego losowania: {{ data_losowania }}</p>
+                    <p>Wylosowane numery:<br>
+                    <div class="separ"></div>
+                    {% for key, value in numerki.items %}
+                        <span class="nums num{{ key }}">{{ value }}</span>
+                    {% endfor %}
+
+
+
+                    </p>
                 </div>
-                <div class="col-lg-6">
-                                        <div class="banner_text">
-                        <div class="banner_text_iner">
-                            <div class="container_for_background">
-                                <h5>A oto najnowsze wiadomości:</h5>
-                                <div class="box-container">
-                                    {% for key, value in news.items %}
-                                    <ul>
-                                        <li><a href="{{ value }}" target="_blank"><p> - {{ key }}</p></a></li>
-                                    </ul>
-                                    {% endfor %}
-                                </div>
-                        </div>
-                    </div>
+                <div class="col-lg-6 slogan_two">
+                <h5>Open projects:</h5>
+
+            {% for project in today %}
+            <a href="{% url 'appforfirst:project' project.id %}">
+<h5> - {{ project.project_name}}</h5>
+              {#              <p>Status: {{ project.project_status}}</p></li>#}
+                {% endfor %}
+
+                <a href="{% url 'appforfirst:add_project' %}" role="button" class="ffirst_button2 margin-top20">Add new</a>
                 </div>
-                </div>
+              </div>
+
             </div>
         </div>
-    </section>
-<div class="container">
-<div class="welcome">
-    <div class="alert alert-success" role="alert">
-        <h2>Dzisiaj jest: {{weekday}}, {{date.day}}.{{date.month}}.{{date.year}}</h2>
-        <h2 class="align-content-center">Ostatnie losowanie Lotto:</h2>
-        <p>Numer losowania Lotto: {{ num_losowania }}</p>
-        <p>Data ostatniego losowania: {{ data_losowania }}</p>
-        <p>Wylosowane numery: {{ numerki }}</p>
-    </div>
-</div>
-<div class="">
+      </section>
+    <section id="home1" class="section-picture">
+        <div id="big-video" class="picture for-slogan">
+            <div class="slogan row" id="slogan-div1">
+                <div class="col-lg-4 slogan_one">
+                    <h5>Open projects:</h5>
+                </div>
+                <div class="col-lg-4 slogan_two">
+                    <h5>Open projects:</h5>
+
+                    {% for project in today %}
+                        <a href="{% url 'appforfirst:project' project.id %}"></a>
+                    <h5> - {{ project.project_name}}</h5>
+                    {#              <p>Status: {{ project.project_status}}</p></li>#}
+                    {% endfor %}
+                    <a href="{% url 'appforfirst:add_project' %}" role="button" class="ffirst_button2 margin-top20">Add new</a>
+                </div>
+                <div class="col-lg-4 slogan_three">
+                    <h5>Open projects:</h5>
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </section>
+
+<!-- PICTURE SECTION END -->
+<!-- H1 SECTION START -->
+
+     <section id="about-sentence-section" class="about-sentence-section">
+      	  <div class="about-sentence-div container">
+        	<h1>Najnowsze wiadomości</h1>
+                        {% for key, value in news.items|slice:":5" %}
+                                        <a href="{{ value }}" target="_blank"><h5>{{ key }}</h5></a>
+                                    {% endfor %}
+        	<p>Dzisiaj istnienie firmy nieposiadającej witryny internetowej zawsze stoi pod znakiem zapytania. Badania wskazują, że z roku na rok liczba ludzi, poszukujących informacji w internecie sukcesywnie rośnie. Strony, witryny, sklepy, portale - to ograniczone tylko wyobraźnią rozwiązania, które wpływają na życie każdego z nas. Być może czasami nie zdajemy sobie sprawy jak bardzo.</p>
+        	<div class="about-sentence-button">
+        		<a href="#contact" class="contact internalLink">Learn more</a>
+        	</div>
+        </div>
+      </section>
+
+<!-- H1 SECTION END -->
+
+<section id="about" class="container">
+
+</section>
+<section id="more" class="more">
+
+</section>
+
+<!-- MARKETING SECTION START -->
+
+      <section id="marketing" class="container">
+        <div class="marketing-column-one">
+        </div>
+        <div class="marketing-column-two">
+        </div>
+      </section>
+
+<!-- MARKETING SECTION END -->
+<!-- CONTACT FORM SECTION -->
+
+      <section id="contact">
+        <div class="container">
+          <div class="section-about">
+              <h3 class="header-one">Kontakt</h3>
+          </div>
+        </div>
+          <div class="contact-all">
+            <div class="contact-address">
+              <div class="contact-pure-data">
+                <i class="fas fa-phone"></i>
+                <p>E-mail:<br/><a class="contact-type-email" href="mailto:biuro@4tea.pl">biuro@4tea.pl</a></p>
+                <i class="far fa-envelope"></i>
+                <p>Telefon:<br/><a href="tel:+48694037695">+48 694 037 695</a></p>
+                <i class="fas fa-map-marker-alt"></i>
+                <p>Adres:<br/><a href="#">ul. Odkryta 51C/11<br/>
+                03-140 Warszawa</a></p>
+              </div>
+            </div>
+            <div class="contact-title">
+              <h2>Zastanawiasz się nad swoją stroną www, blogiem lub serwisem?<br/> Potrzebujesz porady w wyborze technologii?<br/> A może chcesz zmodernizować już istniejące rozwiązanie? <br/>Skontaktuj się z nami. <br/>Dobierzemy, skroimy, doradzimy.
+              </h2>
+            </div>
+            <div id="send_form_status"></div>
+            <div class="contact-form" id="sendFormStatus">
+              <form method="post" action="/send_form.php" id="contact_form" class="form">
+                  <div class="contact-name contact">
+                    <input type="text" name="name" id="name" placeholder="Imię i nazwisko" class="formField input-text" />
+                  </div>
+                  <div class="contact-mail contact">
+                    <input type="text" name="email" id="email" placeholder="Aders e-mail" class="formField input-text" />
+                  </div>
+                   <div class="contact-message contact">
+                    <textarea name="message" id="message" placeholder="Wiadomość" class="formField input-text"></textarea>
+                  </div>
+                  <div class="contact-submit contact">
+                    <button id="sendBtn">Send</button>
+                  </div>
+                  <div id="send_form_status"></div>
+              </form>
+            </div>
+          </div>
+      </section>
+
+    <div class="">
                                     {% for todays_event in todays_events %}
     <a href="{% url 'appforfirst:event' todays_event.id %}">
         <li>{{ todays_event.reminder_name}}
             <p>Start godzina: {{todays_event.reminder_data_wykonania|date:'H:i' }}</p>
                                     {% endfor %}
+
+
+
                                     {% for todays_task in todays_tasks %}
             <a href="{% url 'appforfirst:task' todays_task.id %}">
                 <li>{{ todays_task.task_name}}
                     <p>Typ zadania: {{ todays_task.task_type}}</p>
                   <p>Godzina: {{todays_task.task_start_time|date:'H:i'}}</p>
             {% endfor %}
+
+
+
             {% for todays_task in todays_diary %}
             <a href="{% url 'appforfirst:diary' todays_task.id %}">
               <li>{{ todays_task.diary_name}}
                   <p>Projekt: {{ todays_task.diary_project}}</p>
             {% endfor %}
+
+
     <a href="{% url 'appforfirst:adddiary' %}" role="button">Dodaj nowe wydarzenie</a>
-            {% for project in today %}
-            <a href="{% url 'appforfirst:project' project.id %}">
-          <li>{{ project.project_name}} <p>Status: {{ project.project_status}}</p></li>
-                {% endfor %}
+
+
+
+
     <a href="{% url 'appforfirst:add_project' %}" role="button">Dodaj nowy projekt</a>
 </div>
 
-    <div class="box-container">
-        {% for key, value in news.items %}
-            <a href="{{ value }}"><p>{{ key }}</p></a>
-        {% endfor %}
-    </div>
 
 
-<div></div>
 
-        {% endblock %}
+
+
+{% endblock %}
+
+
+
+
+# lotto
+
+
+
+
+#news
+
