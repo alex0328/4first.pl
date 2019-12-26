@@ -94,21 +94,27 @@ class WelcomeView(LoginRequiredMixin, View):
         #query for all projects
         all_for_today_base = models.Project.objects.filter(project_user=request.user)
 
-        #query for todays reminders
-        todays_events = models.Reminder.objects.filter(reminder_data_wykonania__year=todays_date.year,
-                                                            reminder_data_wykonania__month=todays_date.month,
-                                                            reminder_data_wykonania__day=todays_date.day,
-                                                            reminder_user=request.user)
         #query for todays tasks
         todays_tasks = models.Tasks.objects.filter(task_start_time__year=todays_date.year,
                                                      task_start_time__month=todays_date.month,
                                                      task_start_time__day=todays_date.day,
                                                      task_user=request.user)
+
         #query for todays diaries
         todays_diary = models.Diary.objects.filter(diary_data_utworzenia__year=todays_date.year,
                                                      diary_data_utworzenia__month=todays_date.month,
                                                      diary_data_utworzenia__day=todays_date.day,
                                                      diary_user=request.user)
+
+        #query for todays reminders
+        todays_reminder = models.Reminder.objects.filter(reminder_data_wykonania__year=todays_date.year,
+                                                        reminder_data_wykonania__month=todays_date.month,
+                                                        reminder_data_wykonania__day=todays_date.day,
+                                                        reminder_user=request.user)
+
+
+
+
 
         #lotto and news
 
@@ -154,7 +160,7 @@ class WelcomeView(LoginRequiredMixin, View):
         # print()
 
         #news section
-        feeds = feedparser.parse('https://www.tvn24.pl/najnowsze.xml') #news endpoint xml
+        feeds = feedparser.parse('https://www.polsatnews.pl/rss/wszystkie.xml') #news endpoint xml
         news = {}
         for j in feeds.entries:
             news[j.title] = j.links[0]['href']
@@ -167,7 +173,7 @@ class WelcomeView(LoginRequiredMixin, View):
                 'date': date,
                 'weekday': weekday,
                 'today': all_for_today_base,
-                'todays_events': todays_events,
+                'todays_reminder': todays_reminder,
                 'todays_tasks': todays_tasks,
                 'todays_diary': todays_diary,
                }
