@@ -32,7 +32,7 @@
             {% for project in today %}
             <a href="{% url 'appforfirst:project' project.id %}">
 <h5> - {{ project.project_name}}</h5>
-              {#              <p>Status: {{ project.project_status}}</p></li>#}
+                <p>Status: {{ project.project_status}}</p></li>
                 {% endfor %}
 
                 <a href="{% url 'appforfirst:add_project' %}" role="button" class="ffirst_button2 margin-top20">Add new</a>
@@ -44,35 +44,50 @@
       </section>
         <section id="home1" class="section-picture container">
             <div class="row">
-                <div class="col-sm-3 tiles">
-                    <h3>Projects:</h3>
+                <div class="col-sm-3 tiles_parent">
+                    <div class="tiles">
+                        <div class="tiles_child">
+                            <h3>Projects:</h3>
                         {% for project in today %}
-                        <a href="{% url 'appforfirst:project' project.id %}"></a>
-                        <h5> - {{ project.project_name}}</h5>
-                        {#              <p>Status: {{ project.project_status}}</p></li>#}
+                            <a href="{% url 'appforfirst:project' project.id %}"> {{ project.project_name }}</a>
+                            <br/>
                         {% endfor %}
                         <a href="{% url 'appforfirst:add_project' %}" role="button" class="btn btn-info">Add new project</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-3 tiles">
-                    <h3>All todays tasks:</h3>
-                    {% for task in todays_tasks %}
-                        <p>{{ task }}</p>
-                    {% endfor %}
-                    <a href="{% url 'appforfirst:add_task' %}" role="button" class="btn btn-info">Add new task</a>
+                <div class="col-sm-3 tiles_parent">
+                    <div class="tiles">
+                        <div class="tiles_child">
+                            <h3>All todays tasks:</h3>
+                        {% for task in todays_tasks %}
+                            <a href="{% url 'appforfirst:task' task.id %}"> {{ task.task_name }}</a>
+                        {% endfor %}
+                            <a href="{% url 'appforfirst:add_task' %}" role="button" class="btn btn-info">Add new task</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-3 tiles">
-                    <h3>All todays diary:</h3>
-                    {% for diary in todays_diary %}
-                        <p>{{ diary }}</p>
-                    {% endfor %}
-                <a href="{% url 'appforfirst:add_diary' %}" role="button" class="btn btn-info">Add new diary</a>
+                <div class="col-sm-3 tiles_parent">
+                    <div class="tiles">
+                        <div class="tiles_child">
+                            <h3>All todays diary:</h3>
+                        {% for diary in todays_diary %}
+                            <p>{{ diary }}</p>
+                        {% endfor %}
+                            <a href="{% url 'appforfirst:add_diary' %}" role="button" class="btn btn-info">Add new diary</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-3 tiles">
-                    <h3>All todays reminder:</h3>
-                    {% for reminder in todays_reminder %}
-                        <p>{{ reminder }}</p>
-                    {% endfor %}
-                    <a href="{% url 'appforfirst:add_reminder' %}" role="button" class="btn btn-info">Add new reminder</a>
+                <div class="col-sm-3 tiles_parent">
+                    <div class="tiles">
+                        <div class="tiles_child">
+                            <h3>All todays reminder:</h3>
+                        {% for reminder in todays_reminder %}
+                            <p>{{ reminder }}</p>
+                        {% endfor %}
+                            <a href="{% url 'appforfirst:add_reminder' %}" role="button" class="btn btn-info">Add new reminder</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

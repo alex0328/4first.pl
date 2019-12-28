@@ -20,7 +20,7 @@
 .login-submit:hover {
     border: 2px solid #fee300;
     color: #fff;
-    background: #1D4770;
+    background: var(--main-background-color);;
     transform: scale(1.05);
     box-shadow: 1px 2px 47px -18px black;
 }

@@ -16,6 +16,7 @@
         <p>{{ form.as_p }}</p>
         <input class="ffirst_button1" type="submit" value="Zaloguj">
     </form>
+                    <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
     <div>
     <h2>Nie masz konta?</h2>
         <a href="{% url 'register' %}" class="ffirst_button2">Zarejestruj się</a>

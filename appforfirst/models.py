@@ -6,20 +6,19 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 TASK_TYPE = [
-    ('spotkanie', 'spotkanie'),
-    ('opłata', 'opłata'),
+    ('meeting', 'meeting'),
+    ('payment', 'payment'),
     ('todo', 'todo'),
-    ('wyjazd', 'wyjazd'),
-    ('inne', 'inne'),
-    ('praca','praca')
+    ('trip', 'trip'),
+    ('other', 'other'),
+    ('professional','professional')
 ]
 
 PROJECT_STATUS = [
-    ('nowy_nieruszony', 'nowy'),
-    ('in_progres', 'in_progres'),
-    ('done_otwarty', 'done_otwarty'),
-    ('done_zamkniety', 'done_zamkniety'),
-    ('zawieszony', 'zawieszony')
+    ('new', 'new'),
+    ('in progres', 'in progres'),
+    ('done', 'done'),
+    ('postponed', 'postponed')
 ]
 
 class Project(models.Model):
@@ -40,7 +39,7 @@ class Tasks(models.Model):
     task_type = models.CharField(choices=TASK_TYPE, max_length=50)
     task_name = models.CharField(max_length=200)
     task_description = models.TextField(blank=True)
-    task_data_utworzenia = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    task_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     task_start_time = models.DateTimeField(null=True, blank=True)
     task_end_time = models.DateTimeField(null=True, blank=True)
     task_is_done = models.BooleanField(default=False)

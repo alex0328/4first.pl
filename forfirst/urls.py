@@ -20,6 +20,7 @@ from appforfirst import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls import url, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +32,7 @@ urlpatterns = [
          auth_views.LogoutView.as_view(template_name='appforfirst/newtemplates/logout.html'),
          name='logout'),
     path('register', views.RegisterView.as_view(),name='register'),#v
+    url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

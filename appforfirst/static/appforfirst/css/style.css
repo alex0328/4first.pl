@@ -5,6 +5,10 @@ font-family: 'Nunito', sans-serif;
 font-family: 'Open Sans Condensed';
 */
 /*general*/
+:root {
+  --main-background-color: #1D4770;
+}
+
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -56,7 +60,7 @@ p, h5 {
 
 .borderFixed {
   height: 4px;
-  background-color: #1D4770;
+  background-color: var(--main-background-color);;
   transition: all 1s;
   top: 0;
 }
@@ -123,7 +127,7 @@ header nav.container .menu .logo img {
     top: 0;
     z-index: 100;
     margin-top: -5px;
-    background-color: #1D4770;
+    background-color: var(--main-background-color);;
     box-shadow: 0px 0px 14px 1px;
     transform: scale(1.02);
 }
@@ -155,7 +159,7 @@ header nav.container .menu .logo img {
 }
 
 .menu .menu-items ul li a.home:hover {
-  color: #1D4770;
+  color: var(--main-background-color);;
   text-decoration: none;
 }
 
@@ -175,7 +179,7 @@ header nav.container .menu .logo img {
 }
 
 .menu .menu-items ul li a.loglog {
-    color: #1D4770;
+    color: var(--main-background-color);;
 }
 
 .menu .menu-items ul li a.loglog:hover {
@@ -191,7 +195,7 @@ header nav.container .menu .logo img {
 /*PICTURE SECTION*/
 
 .section-picture {
-  border-bottom: 4px solid #1D4770;
+  border-bottom: 4px solid var(--main-background-color);;
   transition:all 1s;
   position: relative;
 }
@@ -218,7 +222,7 @@ header nav.container .menu .logo img {
 .slogan {
     z-index: 2;
     display: flex;
-    background: #1D4770;
+    background: var(--main-background-color);;
     justify-content: center;
     align-items: center;
     border: 5px solid black;
@@ -274,7 +278,7 @@ p.home-close,
 p.home-open {
   font-size: 130px;
   font-weight: 100;
-  color: #1D4770;
+  color: var(--main-background-color);;
   font-family: "Crimson Text";
 }
 
