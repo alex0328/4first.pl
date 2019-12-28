@@ -2,6 +2,18 @@
 {% load static %}
 {% block content %}
 
+    <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '1610854532390782',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v5.0'
+    });
+  };
+</script>
+<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+
 <section id="home" class="section-picture">
         <div id="big-video" class="picture for-slogan">
             <div class="slogan row" id="slogan-div">

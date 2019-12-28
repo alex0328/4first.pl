@@ -4,6 +4,16 @@
     <link rel="stylesheet" href="{% static 'appforfirst/css/welcome.css' %}">
 {% endblock %}
 {% block content %}
+    <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '1610854532390782',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v5.0'
+    });
+  };
+</script>
 
 <section id="home" class="section-picture">
         <div id="big-video" class="picture for-slogan">
